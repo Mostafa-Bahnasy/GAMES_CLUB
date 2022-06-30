@@ -3,7 +3,7 @@
 object ping1, computer, p_ball, border1, border2;
 object ping_score,pingwall;
 //---------------------------------------------------------------------------------------------
-long long cnt = 0, score_player = 0, score_computer = 0;
+long long  score_player = 0, score_computer = 0;
 
 void ping_initial() {
 	// ball
@@ -38,10 +38,11 @@ void initial_ping_score() {
 
 }
 
-void to_run_pingpong() {
+void to_run_pingpong(Clock &pingCl) {
 	
-		if (cnt%5==0) {
+		if (pingCl.getElapsedTime().asSeconds()>1.5) {
 			ballx = ballx+0.5f ; shift -= 0.02f;
+			pingCl.restart();
 		}
 		//------------------------------------------------
 		// -------------for left player-------------------
@@ -74,11 +75,7 @@ void to_run_pingpong() {
 		}
 		else if (computer.recta.getGlobalBounds().intersects(p_ball.circle.getGlobalBounds())) {
 			ballx = ballx * -1;
-			if (cnt % 3 == 0)
-				bally = bally * -1;
-			else
-				bally = bally;
-			cnt++;
+	
 		}
 		else if (border1.recta.getGlobalBounds().intersects(p_ball.circle.getGlobalBounds())|| border2.recta.getGlobalBounds().intersects(p_ball.circle.getGlobalBounds())) {
 			ballx = ballx ;
@@ -87,16 +84,16 @@ void to_run_pingpong() {
 		//
 		// border and ping collision
 		if (ping1.recta.getGlobalBounds().intersects(border1.recta.getGlobalBounds())) {
-			ping1.recta.move(Vector2f(0, 5));
+			ping1.recta.move(Vector2f(0, 10));
 		}
 		if (ping1.recta.getGlobalBounds().intersects(border2.recta.getGlobalBounds())) {
-			ping1.recta.move(Vector2f(0, -5));
+			ping1.recta.move(Vector2f(0, -10));
 		}
 		if (computer.recta.getGlobalBounds().intersects(border1.recta.getGlobalBounds())) {
-			computer.recta.move(Vector2f(0, 3));
+			computer.recta.move(Vector2f(0, 10));
 		}
 		if (computer.recta.getGlobalBounds().intersects(border2.recta.getGlobalBounds())) {
-			computer.recta.move(Vector2f(0, -3));
+			computer.recta.move(Vector2f(0, -10));
 		}
 		//--------------------------
 		
@@ -110,7 +107,6 @@ void to_run_pingpong() {
 			ballx = -3; bally = 0;
 				computer.recta.setPosition(Vector2f(1840.f, 540.f));
 				shift = 0.07;
-				cnt = 0;
 		}
 		else if (p_ball.circle.getPosition().x > 1920) {// then player scores
 			score_player++;
@@ -118,7 +114,6 @@ void to_run_pingpong() {
 			ballx = 3; bally = 0;
 			computer.recta.setPosition(Vector2f(1840.f, 540.f));
 			shift = 0.07;
-			cnt = 0;
 		}
 		ping_score.text_str(to_string(score_player) + " - " + to_string(score_computer));
 
@@ -139,7 +134,6 @@ void to_run_pingpong() {
 		//
 		// reset
 		ping1m.x = 0, ping1m.y = 0, ping2m.x = 0, ping2m.y = 0;
-		if (cnt % 4 == 0)cnt++;
 
 		if (score_computer > 7) {
 			score_computer = 0;

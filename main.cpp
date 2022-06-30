@@ -9,7 +9,7 @@ int main()
 	initialize_sounds();
 	intial_time();
 	//hide_all_window();
-	if (!to_run_games ()) {
+	if (!to_run_games()) {
 
 		return 0;
 	}

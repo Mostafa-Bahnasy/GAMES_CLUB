@@ -13,7 +13,6 @@ Textbox typing(32,Color(219, 70,236),false);
 Font chatFont;
 Text_C namer, chater;
 Vector<pairSp>skips;
-short skipInd = 0;
 //
 
 void inititialChat() {
@@ -80,12 +79,6 @@ void inititialChat() {
 	chater.text_pos(490, 820);
 	////////////////////////
 
-	//skiperes
-	skips.resize(6);
-	for (int i = 1; i < 7; i++) {
-		skips[i - 1].loadSp("assets\\chat\\" + to_string(i) + ".png");
-		skips[i - 1].posSp( 300 , 300 );
-	}
 }
 //////////////////
 
@@ -346,22 +339,13 @@ void to_run_chatRoom() {
 					}
 					else if (recieveSp.todraw) {
 
-						if (skipper) {
-							skips[skipInd].play(win);
-							skipInd++;
-							if (skipInd >= 6) {
-								skipInd = 0;
-							}
-							// re
-							skipper = 0;
-						}
-
 
 
 
 						/////drawings
 						win.clear(Color::White);
-												win.draw(chatWindow[glopalChat[recieveInd].chatBoxInd].sp);
+						
+						win.draw(chatWindow[glopalChat[recieveInd].chatBoxInd].sp);
 						chater.text_str(glopalChat[recieveInd].mess);
 						namer.text_str(glopalChat[recieveInd].nm);
 						win.draw(namer.text);
@@ -371,10 +355,10 @@ void to_run_chatRoom() {
 
 						// scrolling
 						if (Keyboard::isKeyPressed(Keyboard::Left)) {
-							recieveInd = max(recieveInd - 1, 0); skipper = 1;
+							recieveInd = max(recieveInd - 1, 0); 
 						}
 						else if (Keyboard::isKeyPressed(Keyboard::Right)) {
-							recieveInd = min((unsigned int)1 + recieveInd, glopalChat.size()-1); skipper = 1;
+							recieveInd = min((unsigned int)1 + recieveInd, glopalChat.size()-1); 
 						}
 					
 

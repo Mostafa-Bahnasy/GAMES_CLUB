@@ -249,6 +249,7 @@ bool operations(string& s) {
 
 bool to_run_cmd(accounti admin) {
 // console
+	hide(win);
 	system("cls");
 	cout << "Dragons  [Version X]\n";
 	cout << "All rights reserved";
@@ -266,5 +267,6 @@ bool to_run_cmd(accounti admin) {
 
 	}
 	cout << "system\\close.delay(1000ms)"; Sleep(1000); cout << ".terminates\n";
+	appear(win);
 	return 0;
 }

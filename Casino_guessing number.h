@@ -5,6 +5,7 @@ void transfer_money(accounti& user, int money);
 
 void to_run_casino()
 {
+    hide(win);
     accounti user;
     user = arr_acc[ind];
     string name;
@@ -104,6 +105,7 @@ void to_run_casino()
     system("cls");
 
     window = 1;
+    appear(win);
 }
 //by hisham walid
 void rules()

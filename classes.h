@@ -77,12 +77,12 @@ bool mouse_r() {
 void win_si(RenderWindow& win,size_t x, size_t y) {
 	win.setSize(Vector2u(x, y));
 }
-//void hide(RenderWindow &wind) {
-//	wind.setVisible(0);
-//}
-//void appear(RenderWindow& wind) {
-//	wind.setVisible(1);
-//}
+void hide(RenderWindow &wind) {
+	wind.setVisible(0);
+}
+void appear(RenderWindow& wind) {
+	wind.setVisible(1);
+}
 //inline void hide_all_window() {
 //	hide(win);
 //	hide(win);
@@ -260,15 +260,17 @@ public:
 		}
 	}
 	//-------Text color on mouse pass-------
-	void color_mouse(RenderWindow &win, Color orcl, Color ncl) {
+	bool color_mouse(RenderWindow &win, Color orcl, Color ncl) {
 		auto mouse_pos = sf::Mouse::getPosition(win); // Mouse position relative to the window
 		auto translated_pos = win.mapPixelToCoords(mouse_pos); // Mouse position translated into world coordinates
 		if (this->text.getGlobalBounds().contains(translated_pos)) {
 			this->text.setFillColor(ncl);
+			if (mouse_l())return 1;
 		}
 		else {
 			this->text.setFillColor(orcl);
 		}
+		return 0;
 	}
 	//------print alert---------
 	void alert(RenderWindow& win, string alertStr,Color cl,float posX,float posY) {
@@ -600,6 +602,16 @@ public:
 		w.draw(this->sp);
 	}
 
+	Texture& getTexture() {
+		return this->tx;
+	}
+
+	void scl(float x, float y) {
+		this->sp.setScale(x, y);
+	}
+	Sprite& Sp() {
+		return this->sp;
+	}
 };
 
 

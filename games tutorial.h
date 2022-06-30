@@ -17,7 +17,7 @@
 			*/
 string words[12];
 void make_words() {
-	words[0] = { "" };
+	words[0] = { "YU_GI_OH:\n-> you throw 3 coins first to determine turns. \n->each turn you or your rival draw a card.\n-> if player has guessed three coins correctly,\n then he gets bonus.\n->the bonus is a special effect either draw extra card\n or destroy one card from your rival hand.\n->you can collect a pattern of cards and throw it \nand some effect will happen.\n- you should follow the game standard patterns.\n" };
 	words[1] = { "TIC_TAC_TOE:\n->two players game.\n->each player takes either X or O sign.\n->they take turns till someone reach bingo.\n->you will get 5 coins each time you win.\n->you will lose 4 coins each time you havnt won.\n->our system will challenge you,and not a real person.\n->you pay 3 coins to use game for 3 mins." };
 	words[2] = { "CHATTI:\n->local chat app.\n->you can send and recieve messeges using glopal chat.\n->and you can send to admins if you want fron admins box.\n->you first choose you nicknameand chatti window." };
 	words[3] = { "PIANO:\n-> not a game.\n->you use tiles, by clicking or typing, to make sounds.\n->you pay 3 coins to use app for 3 mins." };

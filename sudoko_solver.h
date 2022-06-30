@@ -40,6 +40,7 @@ bool program();
 
 void  to_run_sudoku_solver() {
 
+	hide(win);
 
 	while (program());
 	system("cls");
@@ -48,6 +49,7 @@ void  to_run_sudoku_solver() {
 	Sleep(1000);
 	system("cls");
 	window = 1;
+	appear(win);
 }
 //////////////////////////////////////////////////////
 //------------------------------functions definations

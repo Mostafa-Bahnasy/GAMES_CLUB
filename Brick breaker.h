@@ -89,6 +89,13 @@ void to_run_breaker()
 		//---------------------------------------//LOSE WINDOW
 		if (lose)
 		{
+			cntr = 0;
+			for (int i = 0; i <= 3; i++)
+				for (int j = 0; j <= 4; j++)
+				{
+					block[cntr].setPosition(200 + i * 43 * 2, 50 + j * 20 * 2);
+					cntr++;
+				}
 			if (play_again(win)) {
 				// take money 
 
@@ -100,13 +107,7 @@ void to_run_breaker()
 				}
 				////////////then reinitialize
 				lose = 0;
-				cntr = 0;
-				for (int i = 0; i <= 3; i++)
-					for (int j = 0; j <= 4; j++)
-					{
-						block[cntr].setPosition(200+i * 43 * 2, 50+j * 20 * 2);
-						cntr++;
-					}
+				
 				spaddle.setPosition(300 * 2, 420 * 2);
 				sball.setPosition(300 * 2, 300 * 2);
 
@@ -134,6 +135,13 @@ void to_run_breaker()
 			arr_acc[ind].money += 30;
 			
 			window = 1;
+			cntr = 0;
+			for (int i = 0; i <= 3; i++)
+				for (int j = 0; j <= 4; j++)
+				{
+					block[cntr].setPosition(200 + i * 43 * 2, 50 + j * 20 * 2);
+					cntr++;
+				}
 		}
 		//
 		if (isColl)clicky();

@@ -54,7 +54,7 @@ void pac_intial() {
 	// pacman (we make it rectangle here)
 	pacman.setSize(Vector2f(50.f, 50.f));
 	pacman.setPosition(Vector2f(600.f,900.f));
-	pacman.setFillColor(Color::Yellow);
+	pacman.setFillColor(Color::Black);
 	// gost
 	gost.setSize(Vector2f(50.f, 50.f));
 	gost.setFillColor(Color::Blue);

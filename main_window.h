@@ -390,7 +390,7 @@ bool to_run_games() {
 	//appear(win);
 	///////// background
 	
-	Clock clock;
+	Clock clock,d;
 	clock.restart();
 	Time time;
 	
@@ -624,7 +624,7 @@ bool to_run_games() {
 		to_run_pac();
 		}
 		else if (window == 7) {// ping pong
-		to_run_pingpong();
+		to_run_pingpong( d);
         }
 		else if (window == 8) { // sudoku
 		to_run_sudoku_solver();
