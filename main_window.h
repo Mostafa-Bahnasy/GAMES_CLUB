@@ -173,7 +173,7 @@ void main_initializations() {
 	gameName.make_text("Game Of Squids.ttf", "");
 	gameName.shape_text(22, Color(32, 238,209));
 	///////////////////////////////////////////////
-	
+	facLogo.loadSp("assets\\facuality back.png");
 	/*
 					 +2
 		   -3->cmd

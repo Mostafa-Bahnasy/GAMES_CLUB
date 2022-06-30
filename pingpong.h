@@ -26,7 +26,7 @@ void ping_initial() {
 }
 //------------
 
-float ballx = 5.f, bally = 0.f, shift = 0.1f;
+float ballx = 1.f, bally = 0.f, shift = 0.1f;
 //
 Vector2f ping1m, ping2m;
 //////////////
@@ -40,17 +40,13 @@ void initial_ping_score() {
 
 void to_run_pingpong(Clock &pingCl) {
 	
-		if (pingCl.getElapsedTime().asSeconds()>1.5) {
-			ballx = ballx+0.5f ; shift -= 0.02f;
-			pingCl.restart();
-		}
 		//------------------------------------------------
 		// -------------for left player-------------------
 		if (Keyboard::isKeyPressed(Keyboard::W)) { // UP
-			ping1.recta.move(Vector2f(0.f, -10)); ping1m.y = -5;
+			ping1.recta.move(Vector2f(0.f, -2)); ping1m.y = -1;
 		}
 		if (Keyboard::isKeyPressed(Keyboard::S)) { // DOWN
-			ping1.recta.move(Vector2f(0.f, 10)); ping1m.y = 5;
+			ping1.recta.move(Vector2f(0.f, 2)); ping1m.y = 1;
 		}
 		//-------------------------------------------------
 		//--------------for second player------------------
@@ -104,14 +100,14 @@ void to_run_pingpong(Clock &pingCl) {
 		if (p_ball.circle.getPosition().x < 0) {// then computer scores
 			score_computer++;
 			p_ball.circle.setPosition(Vector2f(960.f, 540.f));
-			ballx = -3; bally = 0;
+			ballx = -1; bally = 0;
 				computer.recta.setPosition(Vector2f(1840.f, 540.f));
 				shift = 0.07;
 		}
 		else if (p_ball.circle.getPosition().x > 1920) {// then player scores
 			score_player++;
 			p_ball.circle.setPosition(Vector2f(960.f, 540.f));
-			ballx = 3; bally = 0;
+			ballx = 1; bally = 0;
 			computer.recta.setPosition(Vector2f(1840.f, 540.f));
 			shift = 0.07;
 		}

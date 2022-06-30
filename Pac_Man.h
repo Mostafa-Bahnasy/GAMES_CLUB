@@ -111,32 +111,32 @@ void to_run_pac() {
 		// pacman
 
 		if (Keyboard::isKeyPressed(Keyboard::Up)|| Keyboard::isKeyPressed(Keyboard::W)) {
-			pacman.move(Vector2f(0.f, -6.f));
+			pacman.move(Vector2f(0.f, -1.f));
 		}
 		if (Keyboard::isKeyPressed(Keyboard::Down) || Keyboard::isKeyPressed(Keyboard::S)) {
-			pacman.move(Vector2f(0.f, 6.f));
+			pacman.move(Vector2f(0.f, 1.f));
 		}
 		if (Keyboard::isKeyPressed(Keyboard::Left) || Keyboard::isKeyPressed(Keyboard::A)) {
-			pacman.move(Vector2f(-6.f,0.f ));
+			pacman.move(Vector2f(-1.f,0.f ));
 		}
 		if (Keyboard::isKeyPressed(Keyboard::Right) || Keyboard::isKeyPressed(Keyboard::D)) {
-			pacman.move(Vector2f(6.f, 0.f));
+			pacman.move(Vector2f(1.f, 0.f));
 		}
 
 		// pac man collision
 		// we here check if pacman exceeds window cordinates
 		// if then, we make it move in opposite direction.
 		if (pacman.getPosition().x >= 1800.f) {
-			pacman.move(Vector2f(-6.f, 0.f));
+			pacman.move(Vector2f(-1.f, 0.f));
 		}
 		if (pacman.getPosition().x <= 10.f) {
-			pacman.move(Vector2f(6.f, 0.f));
+			pacman.move(Vector2f(1.f, 0.f));
 		}
 		if (pacman.getPosition().y <= 10.f) {
-			pacman.move(Vector2f(0.f, 6.f));
+			pacman.move(Vector2f(0.f, 1.f));
 		}
 		if (pacman.getPosition().y >= 980.f) {
-			pacman.move(Vector2f(0.f, -6.f));
+			pacman.move(Vector2f(0.f, -1.f));
 		}
 		// here we check if gost intersects pacman.
 		if (pacman.getGlobalBounds().intersects(gost.getGlobalBounds())) {
@@ -157,50 +157,50 @@ void to_run_pac() {
 		// we here check if gost exceeds window cordinates
 		// if then, we make it move in opposite direction.
 		if (gost.getPosition().x >= 1900.f) {
-			gost.move(Vector2f(-3.f, 0.f));
+			gost.move(Vector2f(-0.5f, 0.f));
 		}
 		if (gost.getPosition().x <= 100.f) {
-			gost.move(Vector2f(3.f, 0.f));
+			gost.move(Vector2f(0.5f, 0.f));
 		}
 		if (gost.getPosition().y <= 100.f) {
-			gost.move(Vector2f(0.f, 3.f));
+			gost.move(Vector2f(0.f, 0.5f));
 		}
 		if (gost.getPosition().y >= 1000.f) {
-			gost.move(Vector2f(0.f, -3.f));
+			gost.move(Vector2f(0.f, -0.5f));
 		}
 		//---------
 		// ----------------gost movement
 		// there we have 2 levels
 		// lvl 1, gost move up and down only
 		if (lvl == 0) {
-			if (gost.getPosition().y > 900) {
-				movey = -3.f;
+			if (gost.getPosition().y >= 900) {
+				movey = -1.f;
 			}
-			else if (gost.getPosition().y < 100) {
-				movey = 3.f;
+			else if (gost.getPosition().y <= 100) {
+				movey = 1.f;
 			}
 			gost.move(Vector2f(0.f, movey));
 		}
 		else if (lvl == 1) {// then we make gost follow pacman
 			if (pacman.getPosition().x > gost.getPosition().x) {
-				movex = 3.f;
+				movex = 0.5f;
 			}
 			if (pacman.getPosition().x < gost.getPosition().x) {
-				movex = -3.f;
+				movex = -0.5f;
 			}
 			if (pacman.getPosition().y > gost.getPosition().y) {
-				movey = 3.f;
+				movey = 0.5f;
 			}
 			 if (pacman.getPosition().y < gost.getPosition().y) {
-				movey= -3.f;
+				movey= -0.5f;
 			}
 			gost.move(Vector2f(movex, movey));
 		}
 		//--------------------------------------
 		if (score_count > 20) { lvl = 1; }
 		//----------------drawings
-		pacman.rotate(20.f);
-		gost.rotate(20.f);
+		pacman.rotate(100.f);
+		gost.rotate(100.f);
         win.clear(Color::White);
 		// draw coins
 		for (int i = 0; i < 10; i++) {
@@ -221,6 +221,16 @@ void to_run_pac() {
 		if (score_count == 100) {
 			alertTxt.alert(win, "WINNER WINNER", Color::Red, 960, 540);
 			arr_acc[ind].money += 20;
+			die_cnt = -3;
+			score_count = 0;
+			for (int i = 0; i < 10; i++) {
+				for (int j = 0; j < 10; j++) {
+					coins[i][j].isvisible = 1;
+					coins[i][j].cir.setPosition(Vector2f(140.f + (20.f + 140) * j, 100.f + (20.f + 60) * i));
+
+				}
+			}
+			lvl = 0;
 			window = 1;
 		}
 
@@ -245,8 +255,10 @@ void to_run_pac() {
 
 					}
 				}
+				lvl = 0;
 			}
 			else {
+				lvl = 0;
 				window = 1;
 				Sleep(300);
 				

@@ -304,7 +304,33 @@ public:
 
 		this->text.setScale(Vector2f(1.f, 1.f));
 	}
-	
+	///////////////////////////////////////////////
+	void alert(RenderWindow& win, string alertStr, Color cl, float posX, float posY, Sprite& sp,float size) {
+		this->text.setString(alertStr);
+		this->text.setFillColor(cl);
+		this->text.setCharacterSize(size);
+		this->text.setOrigin(Vector2f(this->text.getLocalBounds().width / 2, this->text.getLocalBounds().height / 2));
+		this->text_pos(posX, posY);
+		string tempStr = "";
+		////////////////////////////////
+		back_sound.stop();
+		Typing.play();
+		Typing.setLoop(true);
+		////////////////////////////////
+		for (auto i : alertStr) {
+			tempStr += i;
+			this->text.setString(tempStr);
+			win.clear();
+			win.draw(sp);
+			win.draw(text);
+			win.display();
+			Sleep(90);
+			
+		}
+		Typing.stop();
+		Sleep(3000);
+		back_sound.play();
+	}
 };
 
 

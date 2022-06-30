@@ -6,6 +6,8 @@ using namespace std;
 ///-------------------------------------------global initializations
 int s = 1;
 int i = 0;
+pairSp facLogo;
+
 class accounti
 {
 
@@ -176,7 +178,7 @@ void to_run_logini()
          while (win.pollEvent(closeEv))
          {
              if (closeEv.type == sf::Event::Closed) {
-                 alertTxt.alert(win, "THANK YOU! \n DR.ESRAA SAIED", Color::Red, 820, 450);
+                 alertTxt.alert(win, " THANK YOU! \n\n DR.Salsabil amin.\n\n DR.Esraa Saied.", Color::Red, 920, 450,facLogo.Sp(),80);
 
                  win.close();
              }
