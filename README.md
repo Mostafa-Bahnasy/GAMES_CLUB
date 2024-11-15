@@ -1,4 +1,10 @@
 # GAMES_CLUB
+Running Instructions:
+-  Clone the repo (or download it).
+-  Extract the ```assets.zip``` file into the project.
+-  Open the project in visual studio using the ```.sln``` file.
+-  Enjoy!!
+
 Description:
 -> For English speaking students:
 ------------------
